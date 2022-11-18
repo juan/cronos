@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
+    protected $fillable=['numcolum','namemenu','bigicon','smallicon','linkto'];
+    
     use HasFactory;
     /*Relations one item Menu can have multiple options*/
     public function menuopcions()

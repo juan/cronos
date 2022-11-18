@@ -10,7 +10,6 @@ class MessageModal extends ModalComponent
     public $iconimage;
     public function mount($menssage,$typemessage)
     {
-      $this->typemessage;
       $this->menssage;
       
       if($this->typemessage=='warning'){

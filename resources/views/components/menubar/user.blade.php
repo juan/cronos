@@ -13,7 +13,7 @@
         <div x-show="dropdownOpen"
              class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
              style="display: none;">
-            <a href="{{route('userprofile')}}"
+            <a href=""
                @click="open = false" @focus="open = true" @focusout="open = false"
                class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Perfil</a>
             <a href="#"

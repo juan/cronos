@@ -14,4 +14,9 @@ trait Checkcompany {
     {
         return session(['companyID' => $id]);
     }
+    
+    public static function mycompanyid()
+    {
+        return (new class { use Checkcompany; })->checkssesioncompany();
+    }
 }

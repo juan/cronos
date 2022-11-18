@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Registro;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\Sector;
 use App\Traits\Checkcompany;
@@ -25,16 +26,19 @@ class Sectorregistro extends Component
     {
      
         $this->namesector='';
-        $this->listsector = Sector::where('companie_id',$this->checkssesioncompany())
-            ->orderBy('namesector')
-            ->get(['id','namesector','status']);
-      
+        if($this->checkssesioncompany()>=1) {
+            $this->listsector = Sector::listSector();
+        }else{
+            $this->listsector =[];
+        }
         return view('livewire.registro.sectorregistro');
     }
     
+    /*Check if a company is selected*/
     public function viewcompany()
     {
-      if($this->checkssesioncompany()){
+      if($this->checkssesioncompany()>=1){
+          $this->cleanform();
           $this->estatuswindow=true;
       }else{
           $this->emit('openModal', "message.message-modal",
@@ -42,6 +46,7 @@ class Sectorregistro extends Component
       }
     }
     
+    /*Save a New Sector*/
     public function savesector()
     {
         $this->prepareData();
@@ -53,7 +58,7 @@ class Sectorregistro extends Component
             $this->status = 'ok';
             $this->mesagge = 'registro exitoso !';
             $mesaggelog ="se ha registrado exitosamente el sector $this->namesector";
-      
+            $this->resetErrorBag();
         } else {
             $this->showmesagge = true;
             $this->status = 'cancel';
@@ -78,7 +83,8 @@ class Sectorregistro extends Component
             ['namesector' => str()->upper(trim($this->namesector))
             ],
             
-            ['namesector' => 'required|unique:sectors,namesector'
+            ['namesector' => [Rule::unique('sectors')->
+                              where('companie_id', $this->checkssesioncompany()),'required']
             ],
             
             [ 'namesector.required' => 'campo requerido',
@@ -86,7 +92,7 @@ class Sectorregistro extends Component
             ],
         )->validate();
     }
-    
+    /*Render componente when listener get an event CompanySelected*/
     public function companySelected()
     {
         $this->render();

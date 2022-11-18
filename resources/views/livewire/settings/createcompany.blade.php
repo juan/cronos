@@ -91,7 +91,9 @@
 
                 <x-menubar.footerbuttons>
                     <x-jet-danger-button wire:click="cleanform">Cancelar</x-jet-danger-button>
-                    <x-jet-button wire:click.prevent="savecompany" >
+                    <x-jet-button
+                            wire:loading.attr="disabled"
+                            wire:click.prevent="savecompany" >
                         <svg   wire:loading wire:target="savecompany"
                                 class="animate-spin -ml-1  mr-2 h-2.5 w-4 text-white" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-60" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

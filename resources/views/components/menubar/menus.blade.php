@@ -1,10 +1,12 @@
 <div>
 
     <aside class="w-64" aria-label="Sidebar">
-        <div class="overflow-y-auto py-2 px-5 bg-slate-700 dark:bg-gray-800">
+        <div class="flex-shrink-0 overflow-y-auto py-2 px-5 bg-blue-900 dark:bg-gray-800">
             <!---Start loop menu-->
             <ul class="space-y-2">
-                <li>
+                <li class="border-l-2 border-orange-500">
+
+                    <span></span>
                     <a href="#" class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white
                                  hover:bg-blue-400 dark:hover:bg-gray-700">
                         <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -44,11 +46,11 @@
                         </svg>
 
                     </button>
-                    <ul id="{{$data->namemenu.$data->id}}" class="hidden py-2 space-y-2">
+                    <ul id="{{$data->namemenu.$data->id}}" class="hidden py-1 space-y-1 verflow-x-hidden font-semibold">
                         @foreach($data->menuopcions as $key)
                             <li>
-                                <a href="{{$key->linkto}}"
-                                   class="flex items-center p-2 pl-11 w-full text-base font-normal text-white rounded-lg transition duration-75 group hover:bg-blue-400 dark:text-white dark:hover:bg-gray-700">{{$key->namemenu}}</a>
+                                <a href="{{route($key->linkto)}}"
+                                   class="flex items-center p-1 pl-11 w-full text-base font-normal text-white rounded-lg transition duration-75 group hover:bg-blue-400 dark:text-white dark:hover:bg-gray-700">{{$key->namemenu}}</a>
                             </li>
                         @endforeach
                     </ul>

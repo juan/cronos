@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('companie_id')->constrained();
             $table->timestamps();
-            $table->string('namesector')->unique();
+            $table->string('namesector');
             $table->string('status')->default('activo');
             $table->softDeletes();
         });
